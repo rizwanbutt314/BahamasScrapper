@@ -1,13 +1,13 @@
-#Bahamas Scrapper
+# Bahamas Scrapper
 
-#####Site URL
+##### Site URL
         http://laws.bahamas.gov.bs/
-#####Required
+##### Required
     - Python: 2.7.14
     - Mysql Server
     - Database credentials providing in constants.py file
 
-#####Steps for Running Scrapper
+##### Steps for Running Scrapper
     - RUN pip install -r requirements (for installing required scrapper packages)
     - Scrapper Jobs:
         - 1: Populate the Principal and Amending Acts Passed for all Years
