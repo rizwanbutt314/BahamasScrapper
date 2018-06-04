@@ -1,5 +1,7 @@
 import requests
+import urllib
 import re
+import os
 import datetime
 import dateparser
 from bs4 import BeautifulSoup
@@ -79,6 +81,18 @@ def legistation_parsing(row):
         date_commenced = ""
     else:
         date_commenced = dateparser.parse(date_commenced)
+
+    # Download PDF file in pdfs/ folder
+    pdf_download_path = "pdfs/"+ pdf_url_local.split(title_slug)[0]
+    if not os.path.exists(os.path.dirname(pdf_download_path)):
+        try:
+            os.makedirs(os.path.dirname(pdf_download_path))
+        except OSError as exc: # Guard against race condition
+                print(str(exc))
+    try:
+        urllib.urlretrieve (pdf_full_url, pdf_download_path+title_slug+".pdf")
+    except:
+        print("pdf downloading failed")
 
     if total_tds == 4:
         return [short_title, title_slug, _type, year, number, notes, pdf_url_local, date_commenced, status, migrated, created_at, category]
